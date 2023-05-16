@@ -81,9 +81,9 @@ RUN apt-get update && apt-get install -y\
 WORKDIR /app
 
 #Uncomment if needed to compile a jar
-#COPY javaApp/*.jar my-app.jar
-
-#RUN mvn clean install
+#COPY javaApp/* javaApp
+#WORKDIR ./javaApp
+#RUN mvn clean install -DoutputDirectory=./my-app.jar
 #RUN java -jar my-app.jar
 
 #If needing to secure using a self-made cert -> uncomment
