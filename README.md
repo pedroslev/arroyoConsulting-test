@@ -108,3 +108,16 @@ EXPOSE 80
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 
 ```
+
+#### Compiling java:
+For compiling java we would need to build the Dockerfile storing our base code in javaApp and uncommenting the following lines on our Dockerfile
+
+```Dockerfile
+#Uncomment if needed to compile a jar
+COPY javaApp/* javaApp
+WORKDIR ./javaApp
+RUN mvn clean install -DoutputDirectory=./my-app.jar
+RUN java -jar my-app.jar
+```
+
+With this, the container will make a clean install of our base code using mvn and after that running the .jar that the compilation proccess made as an output as a service running `java -jar` command.
